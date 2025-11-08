@@ -196,7 +196,7 @@ struct TodayView: View {
             .refreshable {
                 await viewModel.fetchTodayEntry()
             }
-            .onChange(of: viewModel.saveSucceeded) { _, succeeded in
+            .onChange(of: viewModel.saveSucceeded) { succeeded in
                 if succeeded {
                     // Navigate back to Home tab
                     selectedTab = 0
