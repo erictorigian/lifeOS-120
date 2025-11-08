@@ -48,7 +48,7 @@ class TodayViewModel: ObservableObject {
 
         do {
             // Try to fetch today's entry
-            let entries: [DailyEntry] = try await supabase.database
+            let entries: [DailyEntry] = try await supabase
                 .from("daily_entries")
                 .select()
                 .eq("user_id", value: userId.uuidString)
@@ -91,14 +91,23 @@ class TodayViewModel: ObservableObject {
         do {
             if let existingEntry = todayEntry {
                 // Update existing entry
-                let updated: DailyEntry = try await supabase.database
+                struct UpdateData: Encodable {
+                    let water_ml: Int
+                    let exercise_minutes: Int
+                    let mood_score: Int
+                    let gratitude_entry: String
+                }
+
+                let updateData = UpdateData(
+                    water_ml: waterMl,
+                    exercise_minutes: exerciseMinutes,
+                    mood_score: moodScore,
+                    gratitude_entry: gratitudeEntry
+                )
+
+                let updated: DailyEntry = try await supabase
                     .from("daily_entries")
-                    .update([
-                        "water_ml": waterMl,
-                        "exercise_minutes": exerciseMinutes,
-                        "mood_score": moodScore,
-                        "gratitude_entry": gratitudeEntry
-                    ])
+                    .update(updateData)
                     .eq("id", value: existingEntry.id.uuidString)
                     .single()
                     .execute()
@@ -108,16 +117,27 @@ class TodayViewModel: ObservableObject {
 
             } else {
                 // Create new entry
-                let newEntry: DailyEntry = try await supabase.database
+                struct InsertData: Encodable {
+                    let user_id: String
+                    let entry_date: String
+                    let water_ml: Int
+                    let exercise_minutes: Int
+                    let mood_score: Int
+                    let gratitude_entry: String
+                }
+
+                let insertData = InsertData(
+                    user_id: userId.uuidString,
+                    entry_date: ISO8601DateFormatter().string(from: today),
+                    water_ml: waterMl,
+                    exercise_minutes: exerciseMinutes,
+                    mood_score: moodScore,
+                    gratitude_entry: gratitudeEntry
+                )
+
+                let newEntry: DailyEntry = try await supabase
                     .from("daily_entries")
-                    .insert([
-                        "user_id": userId.uuidString,
-                        "entry_date": ISO8601DateFormatter().string(from: today),
-                        "water_ml": waterMl,
-                        "exercise_minutes": exerciseMinutes,
-                        "mood_score": moodScore,
-                        "gratitude_entry": gratitudeEntry
-                    ])
+                    .insert(insertData)
                     .single()
                     .execute()
                     .value

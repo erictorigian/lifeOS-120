@@ -15,6 +15,10 @@ xcuserdata/
 DerivedData/
 .swiftpm/
 .build/
+*.xcworkspace/xcuserdata/
+
+# XcodeGen
+project.yml.lock
 
 # Supabase
 supabase/.temp/

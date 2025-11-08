@@ -143,7 +143,7 @@ class AuthViewModel: ObservableObject {
         guard let userId = currentUser?.id else { return }
 
         do {
-            let profile: Profile = try await supabase.database
+            let profile: Profile = try await supabase
                 .from("profiles")
                 .select()
                 .eq("id", value: userId.uuidString)
@@ -166,7 +166,7 @@ class AuthViewModel: ObservableObject {
         defer { isLoading = false }
 
         do {
-            let _: Profile = try await supabase.database
+            let _: Profile = try await supabase
                 .from("profiles")
                 .update(profile)
                 .eq("id", value: userId.uuidString)

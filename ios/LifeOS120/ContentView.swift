@@ -19,7 +19,9 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            authViewModel.checkSession()
+            Task {
+                await authViewModel.checkSession()
+            }
         }
     }
 }

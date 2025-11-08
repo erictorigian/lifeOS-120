@@ -31,8 +31,4 @@ extension SupabaseConfig {
     var auth: AuthClient {
         client.auth
     }
-
-    var database: PostgrestClient {
-        client.database
-    }
 }
