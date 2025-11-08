@@ -12,19 +12,26 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            // Today Tab
-            TodayView()
+            // Home Tab (Dashboard)
+            HomeView()
                 .tabItem {
-                    Label("Today", systemImage: "calendar")
+                    Label("Home", systemImage: "house.fill")
                 }
                 .tag(0)
 
-            // Profile Tab (placeholder for future)
+            // Today Tab (Data Entry)
+            TodayView()
+                .tabItem {
+                    Label("Track", systemImage: "plus.circle.fill")
+                }
+                .tag(1)
+
+            // Profile Tab
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle")
                 }
-                .tag(1)
+                .tag(2)
         }
         .tint(.blue)
     }
