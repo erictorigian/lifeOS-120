@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 16) {
                     // Header with greeting
                     headerSection
 
@@ -31,7 +31,8 @@ struct HomeView: View {
                     // Motivational Message
                     motivationalCard
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 8)
             }
             .background(Color(.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
@@ -58,60 +59,59 @@ struct HomeView: View {
 
     private var headerSection: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(greeting)
-                    .font(.title3)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
 
                 if let name = authViewModel.currentProfile?.fullName {
                     Text(name)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                 } else {
                     Text("Welcome Back")
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                 }
             }
             Spacer()
         }
-        .padding(.horizontal, 4)
     }
 
     // MARK: - Today's Score Card
 
     private var todayScoreCard: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             if let todayScore = viewModel.todayScore {
-                VStack(spacing: 12) {
+                VStack(spacing: 8) {
                     Text("Today's Score")
-                        .font(.headline)
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
 
-                    // Large score circle
+                    // Compact score circle
                     ZStack {
                         Circle()
-                            .stroke(Color.gray.opacity(0.2), lineWidth: 20)
-                            .frame(width: 200, height: 200)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 16)
+                            .frame(width: 160, height: 160)
 
                         Circle()
                             .trim(from: 0, to: viewModel.completionPercentage)
                             .stroke(
                                 scoreColor(for: todayScore.totalScore),
-                                style: StrokeStyle(lineWidth: 20, lineCap: .round)
+                                style: StrokeStyle(lineWidth: 16, lineCap: .round)
                             )
-                            .frame(width: 200, height: 200)
+                            .frame(width: 160, height: 160)
                             .rotationEffect(.degrees(-90))
                             .animation(.spring(), value: viewModel.completionPercentage)
 
-                        VStack(spacing: 4) {
+                        VStack(spacing: 2) {
                             Text("\(todayScore.totalScore)")
-                                .font(.system(size: 64, weight: .bold, design: .rounded))
+                                .font(.system(size: 52, weight: .bold, design: .rounded))
 
                             Text(todayScore.rating)
-                                .font(.title3)
+                                .font(.caption)
                                 .foregroundStyle(.secondary)
 
                             Text(todayScore.ratingEmoji)
-                                .font(.system(size: 32))
+                                .font(.system(size: 24))
                         }
                     }
 
@@ -119,48 +119,52 @@ struct HomeView: View {
                     if let changeDesc = viewModel.scoreChangeDescription {
                         HStack(spacing: 4) {
                             Image(systemName: viewModel.scoreChange ?? 0 > 0 ? "arrow.up.circle.fill" : viewModel.scoreChange ?? 0 < 0 ? "arrow.down.circle.fill" : "minus.circle.fill")
+                                .font(.caption)
                                 .foregroundStyle(viewModel.scoreChange ?? 0 > 0 ? .green : viewModel.scoreChange ?? 0 < 0 ? .red : .gray)
 
                             Text(changeDesc)
-                                .font(.subheadline)
+                                .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
                     }
                 }
             } else {
                 // No data today
-                VStack(spacing: 16) {
+                VStack(spacing: 12) {
                     Image(systemName: "chart.line.uptrend.xyaxis")
-                        .font(.system(size: 64))
+                        .font(.system(size: 48))
                         .foregroundStyle(.gray.opacity(0.5))
 
                     Text("No Data Yet")
-                        .font(.title2)
+                        .font(.headline)
                         .fontWeight(.semibold)
 
                     Text("Start tracking your health today!")
-                        .font(.subheadline)
+                        .font(.caption)
                         .foregroundStyle(.secondary)
 
                     Button {
                         selectedTab = 1 // Switch to Track tab
                     } label: {
                         Text("Log Today's Data")
+                            .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)
-                            .padding()
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
                             .background(Color.blue)
-                            .cornerRadius(12)
+                            .cornerRadius(10)
                     }
-                    .padding(.top, 8)
+                    .padding(.top, 4)
                 }
-                .padding(.vertical, 32)
+                .padding(.vertical, 20)
             }
         }
-        .padding()
+        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
         .background(Color(.systemBackground))
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 2)
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
     }
 
     // MARK: - Quick Stats Row
@@ -192,16 +196,15 @@ struct HomeView: View {
     // MARK: - Trends Section
 
     private var trendsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 10) {
             HStack {
                 Text("Trends")
-                    .font(.title2)
+                    .font(.headline)
                     .fontWeight(.bold)
                 Spacer()
             }
-            .padding(.horizontal, 4)
 
-            VStack(spacing: 12) {
+            VStack(spacing: 8) {
                 // Weekly trend
                 if let weeklyTrend = viewModel.weeklyTrend {
                     TrendCard(
@@ -228,17 +231,18 @@ struct HomeView: View {
     // MARK: - Motivational Card
 
     private var motivationalCard: some View {
-        HStack {
+        HStack(spacing: 8) {
             Image(systemName: "sparkles")
-                .font(.title2)
+                .font(.body)
                 .foregroundStyle(.yellow)
 
             Text(viewModel.motivationalMessage)
-                .font(.headline)
+                .font(.subheadline)
 
             Spacer()
         }
-        .padding()
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
         .background(
             LinearGradient(
                 colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)],
@@ -246,7 +250,7 @@ struct HomeView: View {
                 endPoint: .trailing
             )
         )
-        .cornerRadius(12)
+        .cornerRadius(10)
     }
 
     // MARK: - Helpers
@@ -280,17 +284,17 @@ struct StatCard: View {
     let color: Color
 
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.title2)
+                .font(.title3)
                 .foregroundStyle(color)
 
             Text(value)
-                .font(.system(size: 32, weight: .bold, design: .rounded))
+                .font(.system(size: 28, weight: .bold, design: .rounded))
 
-            VStack(spacing: 2) {
+            VStack(spacing: 1) {
                 Text(title)
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.secondary)
                 Text(subtitle)
                     .font(.caption2)
@@ -298,10 +302,11 @@ struct StatCard: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(.vertical, 10)
+        .padding(.horizontal, 8)
         .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.05), radius: 6, x: 0, y: 2)
     }
 }
 
@@ -315,16 +320,16 @@ struct TrendCard: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.subheadline)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
 
                 HStack(alignment: .lastTextBaseline, spacing: 4) {
                     Text(String(format: "%.0f", average))
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                     Text("avg")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
             }
@@ -332,14 +337,15 @@ struct TrendCard: View {
             Spacer()
 
             Text(change)
-                .font(.subheadline)
+                .font(.caption)
                 .fontWeight(.medium)
                 .foregroundStyle(isImproving ? .green : .secondary)
         }
-        .padding()
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
         .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .cornerRadius(10)
+        .shadow(color: .black.opacity(0.05), radius: 6, x: 0, y: 2)
     }
 }
 

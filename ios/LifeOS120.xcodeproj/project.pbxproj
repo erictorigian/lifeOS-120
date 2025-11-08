@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,7 +38,7 @@
 		277DCA0F0C0093537C31456A /* LabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabData.swift; sourceTree = "<group>"; };
 		3CCECFA4EEC1E53AEE9CE283 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		4618CF7FDBCEAF514610BF45 /* LifeOS120App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeOS120App.swift; sourceTree = "<group>"; };
-		5309B8C2C8EBA6ECBF415239 /* LifeOS120.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LifeOS120.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5309B8C2C8EBA6ECBF415239 /* LifeOS120.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeOS120.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5680C7C6F4E8081A9F79EC7D /* DailyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntry.swift; sourceTree = "<group>"; };
 		6249421CB6B44ABD8DFCB9EA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7810812CF4998B5E3C3715D9 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					699D9F1C48113BEAA1339753 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -196,7 +195,6 @@
 			packageReferences = (
 				8F0A08E5C4307F537B1A36A7 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -371,7 +369,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C57K6822B6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LifeOS120/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -401,7 +399,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C57K6822B6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LifeOS120/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
