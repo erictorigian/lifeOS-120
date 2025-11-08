@@ -19,12 +19,7 @@ class SupabaseConfig {
     lazy var client: SupabaseClient = {
         SupabaseClient(
             supabaseURL: supabaseURL,
-            supabaseKey: supabaseAnonKey,
-            options: SupabaseClientOptions(
-                auth: AuthClientOptions(
-                    emitLocalSessionAsInitialSession: true
-                )
-            )
+            supabaseKey: supabaseAnonKey
         )
     }()
 
