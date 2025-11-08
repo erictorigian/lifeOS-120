@@ -10,6 +10,7 @@ import SwiftUI
 struct TodayView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = TodayViewModel()
+    @Binding var selectedTab: Int
 
     var body: some View {
         NavigationStack {
@@ -195,6 +196,14 @@ struct TodayView: View {
             .refreshable {
                 await viewModel.fetchTodayEntry()
             }
+            .onChange(of: viewModel.saveSucceeded) { _, succeeded in
+                if succeeded {
+                    // Navigate back to Home tab
+                    selectedTab = 0
+                    // Reset the flag
+                    viewModel.saveSucceeded = false
+                }
+            }
         }
     }
 }
@@ -250,6 +259,6 @@ struct QuickAddButton: View {
 }
 
 #Preview {
-    TodayView()
+    TodayView(selectedTab: .constant(1))
         .environmentObject(AuthViewModel())
 }

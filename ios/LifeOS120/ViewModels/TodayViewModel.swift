@@ -14,6 +14,7 @@ class TodayViewModel: ObservableObject {
     @Published var todayEntry: DailyEntry?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var saveSucceeded = false
 
     // Local state for editing
     @Published var waterMl: Int = 0
@@ -89,6 +90,7 @@ class TodayViewModel: ObservableObject {
 
         isLoading = true
         errorMessage = nil
+        saveSucceeded = false
         defer { isLoading = false }
 
         let today = Calendar.current.startOfDay(for: Date())
@@ -155,9 +157,13 @@ class TodayViewModel: ObservableObject {
                 todayEntry = newEntry
             }
 
+            // Mark save as successful
+            saveSucceeded = true
+
         } catch {
             errorMessage = "Failed to save entry: \(error.localizedDescription)"
             print("Error saving entry: \(error)")
+            saveSucceeded = false
         }
     }
 

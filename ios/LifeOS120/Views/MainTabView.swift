@@ -20,7 +20,7 @@ struct MainTabView: View {
                 .tag(0)
 
             // Today Tab (Data Entry)
-            TodayView()
+            TodayView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("Track", systemImage: "plus.circle.fill")
                 }
