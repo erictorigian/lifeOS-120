@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,8 +18,11 @@
 		909F26A0D1818F744DE3E842 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114E2E79358C67D39E00B7FE /* MainTabView.swift */; };
 		97B6F3BFB1E70C37F33EA5F6 /* LifeOS120App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4618CF7FDBCEAF514610BF45 /* LifeOS120App.swift */; };
 		9BFB8A31DAD3D9748750CF03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB135821CEA6B859959F3E8 /* Assets.xcassets */; };
+		9DC483CE6F3B47E3B11FDBB9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC7D992E5E9D7CA20E49F2 /* HomeView.swift */; };
 		A8CD47667F91A3DB93330A16 /* LabData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DCA0F0C0093537C31456A /* LabData.swift */; };
+		B51604BC65A84C0A5EA72709 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249421CB6B44ABD8DFCB9EA /* HomeViewModel.swift */; };
 		BA328791C6765A4FCA4B0D41 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06021362A18D2CE553008408 /* SupabaseConfig.swift */; };
+		D3CD9713DF50AC5E871384A0 /* HealthScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACAE4E537E013923D50A3D9 /* HealthScore.swift */; };
 		D835CD47F2D3A23426CBD513 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CFC1A994826575C1FFF2BE /* Habit.swift */; };
 		D9FEEFB3DD3E620E3171DF20 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464CF503F47F53CA8C2D612 /* TodayView.swift */; };
 		DCD97B6F158B1494A3D24EED /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = F6A035054F07B85BB1779B81 /* Supabase */; };
@@ -35,14 +38,17 @@
 		277DCA0F0C0093537C31456A /* LabData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabData.swift; sourceTree = "<group>"; };
 		3CCECFA4EEC1E53AEE9CE283 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		4618CF7FDBCEAF514610BF45 /* LifeOS120App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeOS120App.swift; sourceTree = "<group>"; };
-		5309B8C2C8EBA6ECBF415239 /* LifeOS120.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeOS120.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5309B8C2C8EBA6ECBF415239 /* LifeOS120.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LifeOS120.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5680C7C6F4E8081A9F79EC7D /* DailyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntry.swift; sourceTree = "<group>"; };
+		6249421CB6B44ABD8DFCB9EA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7810812CF4998B5E3C3715D9 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AFE7C441B06CDBB2A173799F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B464CF503F47F53CA8C2D612 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		CACC7D992E5E9D7CA20E49F2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DC10D74520F5187629C9B1E0 /* Config.example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Config.example.plist; sourceTree = "<group>"; };
 		DC948072DD7A0473F69ECF5F /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		E2023973DF0786037940B103 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		EACAE4E537E013923D50A3D9 /* HealthScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthScore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 			children = (
 				5680C7C6F4E8081A9F79EC7D /* DailyEntry.swift */,
 				02CFC1A994826575C1FFF2BE /* Habit.swift */,
+				EACAE4E537E013923D50A3D9 /* HealthScore.swift */,
 				277DCA0F0C0093537C31456A /* LabData.swift */,
 				04E5EEC75C282B634554E608 /* Profile.swift */,
 			);
@@ -113,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				7810812CF4998B5E3C3715D9 /* AuthViewModel.swift */,
+				6249421CB6B44ABD8DFCB9EA /* HomeViewModel.swift */,
 				DC948072DD7A0473F69ECF5F /* TodayViewModel.swift */,
 			);
 			path = ViewModels;
@@ -122,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCECFA4EEC1E53AEE9CE283 /* AuthView.swift */,
+				CACC7D992E5E9D7CA20E49F2 /* HomeView.swift */,
 				114E2E79358C67D39E00B7FE /* MainTabView.swift */,
 				B464CF503F47F53CA8C2D612 /* TodayView.swift */,
 			);
@@ -166,7 +175,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					699D9F1C48113BEAA1339753 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 496550252F723F1D702B3BAE /* Build configuration list for PBXProject "LifeOS120" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -181,6 +196,7 @@
 			packageReferences = (
 				8F0A08E5C4307F537B1A36A7 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -211,6 +227,9 @@
 				6B04E4D55C7B4798A0BF05F4 /* ContentView.swift in Sources */,
 				80DAE66DC096ABFA44113F47 /* DailyEntry.swift in Sources */,
 				D835CD47F2D3A23426CBD513 /* Habit.swift in Sources */,
+				D3CD9713DF50AC5E871384A0 /* HealthScore.swift in Sources */,
+				9DC483CE6F3B47E3B11FDBB9 /* HomeView.swift in Sources */,
+				B51604BC65A84C0A5EA72709 /* HomeViewModel.swift in Sources */,
 				393BE2007929F740078AADC8 /* KeychainHelper.swift in Sources */,
 				A8CD47667F91A3DB93330A16 /* LabData.swift in Sources */,
 				97B6F3BFB1E70C37F33EA5F6 /* LifeOS120App.swift in Sources */,
@@ -260,10 +279,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C57K6822B6;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -277,7 +294,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -319,10 +335,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = C57K6822B6;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -343,7 +357,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -355,9 +368,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C57K6822B6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LifeOS120/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -371,7 +385,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.torigian.LifeOS120;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifeos120.LifeOS120;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
@@ -384,9 +398,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C57K6822B6;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = LifeOS120/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -400,7 +415,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.torigian.LifeOS120;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifeos120.LifeOS120;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.9;

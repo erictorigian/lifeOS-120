@@ -125,27 +125,16 @@ struct TodayView: View {
                         icon: "sparkles",
                         color: .orange
                     ) {
-                        VStack(spacing: 12) {
-                            TextField(
-                                "What are you grateful for today?",
-                                text: $viewModel.gratitudeEntry,
-                                axis: .vertical
-                            )
-                            .textFieldStyle(.plain)
-                            .lineLimit(3...6)
-                            .padding()
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(12)
-
-                            Button("Save Gratitude") {
-                                Task {
-                                    await viewModel.saveEntry()
-                                }
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.orange)
-                            .disabled(viewModel.gratitudeEntry.isEmpty)
-                        }
+                        TextField(
+                            "What are you grateful for today?",
+                            text: $viewModel.gratitudeEntry,
+                            axis: .vertical
+                        )
+                        .textFieldStyle(.plain)
+                        .lineLimit(3...6)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(12)
                     }
 
                     // Error Message
@@ -157,6 +146,31 @@ struct TodayView: View {
                             .background(Color.red.opacity(0.1))
                             .cornerRadius(8)
                     }
+
+                    // Save Button
+                    Button(action: {
+                        Task {
+                            await viewModel.saveEntry()
+                        }
+                    }) {
+                        HStack {
+                            if viewModel.isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Image(systemName: "checkmark.circle.fill")
+                                Text("Save Today's Data")
+                                    .fontWeight(.semibold)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(16)
+                    }
+                    .disabled(viewModel.isLoading)
+                    .padding(.top, 8)
                 }
                 .padding()
             }
@@ -164,12 +178,13 @@ struct TodayView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Sign Out") {
+                    Button {
                         Task {
-                            await authViewModel.signOut()
+                            await viewModel.fetchTodayEntry()
                         }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
                     }
-                    .foregroundStyle(.red)
                 }
             }
             .onAppear {

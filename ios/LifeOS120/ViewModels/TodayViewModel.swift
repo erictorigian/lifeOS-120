@@ -46,13 +46,18 @@ class TodayViewModel: ObservableObject {
 
         let today = Calendar.current.startOfDay(for: Date())
 
+        // Format date as YYYY-MM-DD for Supabase
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayString = dateFormatter.string(from: today)
+
         do {
             // Try to fetch today's entry
             let entries: [DailyEntry] = try await supabase
                 .from("daily_entries")
                 .select()
                 .eq("user_id", value: userId.uuidString)
-                .eq("entry_date", value: ISO8601DateFormatter().string(from: today))
+                .eq("entry_date", value: todayString)
                 .execute()
                 .value
 
@@ -87,6 +92,11 @@ class TodayViewModel: ObservableObject {
         defer { isLoading = false }
 
         let today = Calendar.current.startOfDay(for: Date())
+
+        // Format date as YYYY-MM-DD for Supabase
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayString = dateFormatter.string(from: today)
 
         do {
             if let existingEntry = todayEntry {
@@ -128,7 +138,7 @@ class TodayViewModel: ObservableObject {
 
                 let insertData = InsertData(
                     user_id: userId.uuidString,
-                    entry_date: ISO8601DateFormatter().string(from: today),
+                    entry_date: todayString,
                     water_ml: waterMl,
                     exercise_minutes: exerciseMinutes,
                     mood_score: moodScore,
@@ -155,27 +165,17 @@ class TodayViewModel: ObservableObject {
 
     func addWater(_ amount: Int) {
         waterMl += amount
-        Task {
-            await saveEntry()
-        }
     }
 
     func addExercise(_ minutes: Int) {
         exerciseMinutes += minutes
-        Task {
-            await saveEntry()
-        }
     }
 
     func updateMood(_ score: Int) {
         moodScore = score
-        Task {
-            await saveEntry()
-        }
     }
 
     func updateGratitude(_ text: String) {
         gratitudeEntry = text
-        // Don't auto-save gratitude, let user tap save button
     }
 }

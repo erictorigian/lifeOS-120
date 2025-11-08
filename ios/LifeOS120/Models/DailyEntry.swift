@@ -63,6 +63,59 @@ struct DailyEntry: Codable, Identifiable {
         case updatedAt = "updated_at"
     }
 
+    // Custom decoder to handle Supabase date formats
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(UUID.self, forKey: .id)
+        userId = try container.decode(UUID.self, forKey: .userId)
+
+        // Decode dates with proper formatters
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+        let dateOnlyFormatter = DateFormatter()
+        dateOnlyFormatter.dateFormat = "yyyy-MM-dd"
+
+        // Entry date is just a date (no time)
+        if let dateString = try? container.decode(String.self, forKey: .entryDate),
+           let date = dateOnlyFormatter.date(from: dateString) {
+            entryDate = date
+        } else {
+            entryDate = try container.decode(Date.self, forKey: .entryDate)
+        }
+
+        waterMl = try container.decode(Int.self, forKey: .waterMl)
+        calories = try? container.decode(Int.self, forKey: .calories)
+        proteinG = try? container.decode(Double.self, forKey: .proteinG)
+        carbsG = try? container.decode(Double.self, forKey: .carbsG)
+        fatsG = try? container.decode(Double.self, forKey: .fatsG)
+        exerciseMinutes = try container.decode(Int.self, forKey: .exerciseMinutes)
+        exerciseType = try? container.decode(String.self, forKey: .exerciseType)
+        steps = try? container.decode(Int.self, forKey: .steps)
+        sleepHours = try? container.decode(Double.self, forKey: .sleepHours)
+        sleepQuality = try? container.decode(Int.self, forKey: .sleepQuality)
+        gratitudeEntry = try? container.decode(String.self, forKey: .gratitudeEntry)
+        coherencePracticeMinutes = (try? container.decode(Int.self, forKey: .coherencePracticeMinutes)) ?? 0
+        moodScore = try? container.decode(Int.self, forKey: .moodScore)
+        notes = try? container.decode(String.self, forKey: .notes)
+
+        // Timestamps with time
+        if let createdString = try? container.decode(String.self, forKey: .createdAt),
+           let date = dateFormatter.date(from: createdString) {
+            createdAt = date
+        } else {
+            createdAt = try container.decode(Date.self, forKey: .createdAt)
+        }
+
+        if let updatedString = try? container.decode(String.self, forKey: .updatedAt),
+           let date = dateFormatter.date(from: updatedString) {
+            updatedAt = date
+        } else {
+            updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        }
+    }
+
     // Default initializer for new entries
     init(
         id: UUID = UUID(),
