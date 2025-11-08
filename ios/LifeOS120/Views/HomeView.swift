@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = HomeViewModel()
+    @Binding var selectedTab: Int
 
     var body: some View {
         NavigationStack {
@@ -141,7 +142,9 @@ struct HomeView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
 
-                    NavigationLink(destination: TodayView()) {
+                    Button {
+                        selectedTab = 1 // Switch to Track tab
+                    } label: {
                         Text("Log Today's Data")
                             .fontWeight(.semibold)
                             .foregroundStyle(.white)
@@ -341,6 +344,6 @@ struct TrendCard: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(selectedTab: .constant(0))
         .environmentObject(AuthViewModel())
 }
